@@ -1,0 +1,23 @@
+/* CHAT INTERFACE */
+
+.chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.bubble {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.sent {
+    background: #d9fdd3;
+    margin-left: auto;
+}
+
+.received {
+    background: white;
+}
+

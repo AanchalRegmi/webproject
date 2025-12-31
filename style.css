@@ -1,0 +1,14 @@
+/* LOGIN PAGE ONLY */
+
+body {
+    background: #f0f2f5;
+    font-family: Arial, sans-serif;
+}
+
+.login-box {
+    width: 350px;
+    margin: 100px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+}
