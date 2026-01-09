@@ -3,8 +3,7 @@ session_start();
 include('db.php');
 
 // Initialize variables to avoid "undefined variable" warnings
-$registered = isset($_GET['registered']);
- // change to true if coming from registration
+$registered = false; // change to true if coming from registration
 $error = "";          // single error message
 
 if (isset($_SESSION['username'])) {
@@ -28,7 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Verify hashed password
         if (password_verify($password, $user['password'])) {
-            $_SESSION['username'] = $user['username'];
+            $_SESSION['username'] = strtolower($user['username']);        
+
             header("Location: text.php");
             exit();
         } else {

@@ -1,14 +1,98 @@
-/* LOGIN PAGE ONLY */
-
-body {
-    background: #f0f2f5;
-    font-family: Arial, sans-serif;
-}
-
-.login-box {
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  /* Background */
+  body {
+    background: #faf0ca;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Main container */
+  .container {
+    background: #ffffff;
     width: 350px;
-    margin: 100px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-}
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #faf0ca;
+    text-align: center;
+  }
+  
+  /* Title */
+  h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Error box */
+  .errors {
+    background: #ffe6e6;
+    border-left: 4px solid #e63946;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: left;
+    border-radius: 5px;
+  }
+  
+  .errors p {
+    color: #e63946;
+    font-size: 14px;
+  }
+  
+  /* Form inputs */
+  form input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: 0.3s;
+  }
+  
+  /* Input focus effect */
+  form input:focus {
+    border-color: #0d3b66;
+    outline: none;
+    box-shadow: 0 0 5px rgba(74,144,226,0.4);
+  }
+  
+  /* Submit button */
+  button {
+    width: 100%;
+    padding: 12px;
+    background: #0d3b66;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  /* Button hover effect */
+  button:hover {
+    background: #5190cc;
+  }
+  
+  /* Login text */
+  p {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  
+  p a {
+    color: #0d3b66;
+    text-decoration: none;
+  }
+  
+  p a:hover {
+    text-decoration: underline;
+  }

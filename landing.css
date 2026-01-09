@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Whole page yellow background */
+body {
+    background-color: #faf0ca;
+    min-height: 90vh;
+}
+
+/* Center container */
+.page-wrapper {
+    width: 85%;
+    margin: 40px auto;
+    background-color: #bfbfbf; /* darker grey outside */
+}
+
+/* Blue top */
+.top-section {
+    height: 240px;
+    background-color: #0b355e;
+    position: relative;
+   
+}
+
+/* Navigation */
+.nav {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+/* Light grey middle */
+.bottom-section {
+    background-color: #ececec;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;;
+    align-items: center;
+    padding-top:1px;
+}
+
+/* Title */
+.bottom-section h1 {
+    font-size: 90px;
+    letter-spacing: 5px;
+    color: white;
+    text-shadow: 0 0 6px rgba(0,0,0,0.25);
+    align-items: center;
+}
+
+.bottom-section h1 {
+    transform: translateY(-50px);
+}
+
+/* Tagline */
+.tagline {
+    margin-top: 12px;
+    font-size: 18px;
+    color: #0b355e;
+    font-style: italic;
+   transform:translateY(-50px);
+}
+
+.logo-text {
+    font-size: 80px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;   /* KEY: centers icon vertically */
+    gap: 12px;             /* space between text & icon */
+}
+
+.logo-icon {
+    font-size: 36px;
+    margin-top: 8px; /* small optical adjustment */
+    transform: translateY(-50px);
+}

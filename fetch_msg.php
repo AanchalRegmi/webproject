@@ -6,31 +6,44 @@ if (!isset($_SESSION['username'])) {
     exit("You are not logged in");
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$currentUser = strtolower($_SESSION['username']);
+$receiver = strtolower($_POST['receiver']);
 
-    $currentUser = $_SESSION['username'];
-    $sender = $_POST['sender'];
-    $receiver = $_POST['receiver'];
+// mark messages as read
+$update = "
+UPDATE chat_messages
+SET is_read = 1
+WHERE sender = '$receiver'
+AND receiver = '$currentUser'
+";
+$conn->query($update);
 
-    $sql = "SELECT sender, message FROM chat_messages 
-            WHERE (sender='$sender' AND receiver='$receiver') 
-               OR (sender='$receiver' AND receiver='$sender') 
-            ORDER BY created_at ASC";
+// fetch messages
+$sql = "
+SELECT sender, message, image 
 
-    $result = $conn->query($sql);
+FROM chat_messages
+WHERE 
+   (sender = '$currentUser' AND receiver = '$receiver')
+OR (sender = '$receiver' AND receiver = '$currentUser')
+ORDER BY created_at ASC
+";
 
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
+$result = $conn->query($sql);
 
-            // Check who sent the message
-            $class = ($row['sender'] === $currentUser) ? 'sent' : 'received';
+while ($row = $result->fetch_assoc()) {
+    $class = ($row['sender'] === $currentUser) ? 'sent' : 'received';
+    echo '<div class="bubble ' . $class . '">';
 
-            echo '
-                <div class="bubble ' . $class . '">
-                    ' . htmlspecialchars($row['message']) . '
-                </div>
-            ';
-        }
+    if (!empty($row['message'])) {
+        echo htmlspecialchars($row['message']) . "<br>";
     }
+    
+    if (!empty($row['image'])) {
+        echo "<img src='{$row['image']}' class='chat-image'>";
+    }
+    
+    echo '</div>';
+    
 }
-?>
+

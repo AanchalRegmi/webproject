@@ -11,7 +11,7 @@ if (isset($_SESSION['username'])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $username = trim($_POST['username']);
+    $username = strtolower(trim($_POST['username']));
     $email = trim($_POST['email']);
     $password = $_POST['password'];
 
@@ -24,6 +24,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Invalid email format";
     }
 
+    // PASSWORD VALIDATION
+    $passwordErrors = [];
+    if (strlen($password) < 8) {
+        $passwordErrors[] = "Password must be at least 8 characters long.";
+    }
+    if (!preg_match('/[A-Z]/', $password)) {
+        $passwordErrors[] = "Password must include at least one uppercase letter.";
+    }
+    if (!preg_match('/[a-z]/', $password)) {
+        $passwordErrors[] = "Password must include at least one lowercase letter.";
+    }
+    if (!preg_match('/[0-9]/', $password)) {
+        $passwordErrors[] = "Password must include at least one number.";
+    }
+    if (!preg_match('/[\W]/', $password)) {
+        $passwordErrors[] = "Password must include at least one special character.";
+    }
+
+    if (!empty($passwordErrors)) {
+        $errors = array_merge($errors, $passwordErrors);
+    }
+
+    // Only proceed if no errors
     if (empty($errors)) {
         // Check if username or email already exists
         $stmt = $conn->prepare("SELECT * FROM users WHERE username=? OR email=? LIMIT 1");
@@ -65,17 +88,21 @@ $conn->close();
 <body>
   <div class="container">
     <h2>Sign Up</h2>
+
     <?php if ($errors): ?>
       <div class="errors">
         <?php foreach($errors as $e) echo "<p>$e</p>"; ?>
       </div>
     <?php endif; ?>
+
     <form method="post" action="">
       <input name="username" placeholder="Username" required>
       <input name="email" type="email" placeholder="Email" required>
       <input name="password" type="password" placeholder="Password" required>
+      
       <button type="submit">Create Account</button>
     </form>
+
     <p>Already have an account? <a href="login.php">Login</a></p>
   </div>
 </body>
